@@ -1,6 +1,18 @@
 *.class
-
-# Package Files #
 *.jar
 *.war
 *.ear
+*.ipr
+*.iml
+*.iws
+target
+*.log
+.DS_Store
+.clover
+.settings
+.eclipse
+.classpath
+.project
+.springBeans
+.svn
+db
