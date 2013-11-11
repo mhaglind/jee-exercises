@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- =================================================================== -->
+<!-- LogBack configuration file                                          -->
+<!-- =================================================================== -->
+<configuration>
+
+  <!-- Append messages to the console -->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>%-5p %c{1} - %m%n</Pattern>
+    </encoder>
+  </appender>
+
+  <!-- Setup logging level for OpenJPA
+  <logger name="openjpa" level="info"/>
+  <logger name="openjpa.jdbc.SQL" level="trace"/>
+ -->
+
+  <!-- Set default log-level -->
+  <root level="warn">
+    <appender-ref ref="STDOUT"/>
+  </root>
+
+</configuration>

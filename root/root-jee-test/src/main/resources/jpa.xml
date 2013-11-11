@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+  <!-- Default JPA configuration -->
+  <bean id="entityManagerFactory" 
+    abstract="true" 
+    class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    
+    <property name="dataSource" ref="dataSource" />
+    <property name="jpaPropertyMap">
+      <map>
+        <entry key="openjpa.Log" value="commons" />
+        <!-- Uncomment to enable automatic creation of Database Schema based on JPA mappings. -->
+        <entry key="openjpa.jdbc.SynchronizeMappings" value="${openjpa.jdbc.SynchronizeMappings}" />
+
+        <entry key="openjpa.TransactionMode" value="${openjpa.TransactionMode}" />
+        <entry key="openjpa.ManagedRuntime" value="${openjpa.ManagedRuntime}" />
+        <!-- <entry key="openjpa.jdbc.DBDictionary" value="${openjpa.jdbc.DBDictionary}" /> -->
+      </map>
+    </property>
+    
+    <property name="jpaVendorAdapter">
+      <bean class="org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter">
+        <property name="database" value="${dbDialect}" />
+      </bean>
+    </property>
+
+    <property name="persistenceUnitPostProcessors">
+      <list>
+        <bean class="com.haglind.jee.PubPersistenceUnitPostProcessor">
+          <property name="jtaDataSource" ref="dataSource" />
+          <property name="nonJtaDataSource" ref="dataSource_NoTx" />
+        </bean>
+      </list>
+    </property>
+    
+  </bean>
+
+</beans>
