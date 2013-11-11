@@ -15,4 +15,5 @@ target
 .project
 .springBeans
 .svn
+.checkstyle
 db
